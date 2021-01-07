@@ -1,3 +1,13 @@
+## Introduction to Hooks in React. In this repo we will continue to work with upcoming React Hooks example. 
+### This repo contains: 
+* props & destructuring props
+* reusable components
+* styling
+* conditional rendering
+
+### You can find comments and explenation about the code in App.js
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
