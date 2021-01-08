@@ -1,6 +1,6 @@
 import React from "react";
 
-const NameTag = ({ firstName, lastName }) => {
+const NameTag = ({ firstName, lastName, style }) => {
   // destructuring props
   if (!firstName && !lastName) {
     return (
@@ -12,8 +12,8 @@ const NameTag = ({ firstName, lastName }) => {
 
   return (
     <div className="name">
-      <h3>First Name: {firstName}</h3>
-      <h3>Last Name: {lastName}</h3>
+      <h3 style={style}>First Name: {firstName}</h3>
+      <h3 style={style}>Last Name: {lastName}</h3>
       {firstName === "Janne" && (
         <div
           style={{

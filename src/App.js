@@ -1,15 +1,35 @@
 import React from "react";
 import NameTag from "./components/NameTag";
+import AgeCount from "./components/AgeCount";
 
 import "./index.css";
 
+const makeGreen = (BaseComponent) => (props) => {
+  const addGreen = {
+    style: {
+      color: "green",
+    },
+  };
+
+  const newProps = {
+    ...props,
+    ...addGreen,
+  };
+
+  return <BaseComponent {...newProps} />;
+};
+
+const GreenNameTag = makeGreen(NameTag);
+
 function App() {
+  /*<h1 className="name title">Name List</h1>
+  <NameTag firstName="Helena" lastName="Johansson"></NameTag>
+  <GreenNameTag firstName="Janne" lastName="Janesson"></GreenNameTag>
+  <NameTag firstName="Oskar" lastName="Oskarsson"></NameTag>*/
+
   return (
     <div className="container">
-      <h1 className="name title">Name List</h1>
-      <NameTag firstName="Helena" lastName="Johansson"></NameTag>
-      <NameTag firstName="Janne" lastName="Janesson"></NameTag>
-      <NameTag firstName="Oskar" lastName="Oskarsson"></NameTag>
+      <AgeCount />
     </div>
   );
 }
@@ -60,4 +80,18 @@ const nameTagTitle = {
  We did that by using an if statement.
  then we did a conditional rendering to display "VIP" in a certain color to a specific name. We did exactly the same as in the if statement 
  but just in a different way. 
+
+ 4.  HIGHER ORDER COMPONENT
+Javascript has higher order function is a function that takes function as an argument
+and it return another function. Higher order comp is pretty much the same
+a function that takes component as an argument
+job is to transform, mostrly you do something with the props and then you return a component
+
+Lets say the nametag Janne will be all green
+
+makeGreen: the function takes an argument, the base component with some props
+then it takes the props and adds new prop
+and then returns the same component with the new props
+
+its not showing yet so lets go to nametag so we need an extra prop
 */
