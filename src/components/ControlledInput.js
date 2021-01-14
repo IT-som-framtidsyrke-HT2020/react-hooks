@@ -24,12 +24,19 @@ const ControlledInput = () => {
     const name = e.target.name;
     const value = e.target.value;
 
-    console.log(name, value);
+    //console.log(name, value);
     setPerson({ ...person, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (person.firstName && person.lastName && person.email) {
+      const newPerson = { ...person, id: new Date().getTime().toString() };
+      setPeople([...people, newPerson]);
+      setPerson({ firstName: "", lastName: "", email: "" });
+    } else {
+      alert("Empty values");
+    }
   };
 
   return (
