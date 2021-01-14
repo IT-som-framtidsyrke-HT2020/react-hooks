@@ -1,35 +1,14 @@
 import React from "react";
 import NameTag from "./components/NameTag";
 import AgeCount from "./components/AgeCount";
+import ControlledInput from "./components/ControlledInput";
 
 import "./index.css";
 
-const makeGreen = (BaseComponent) => (props) => {
-  const addGreen = {
-    style: {
-      color: "green",
-    },
-  };
-
-  const newProps = {
-    ...props,
-    ...addGreen,
-  };
-
-  return <BaseComponent {...newProps} />;
-};
-
-const GreenNameTag = makeGreen(NameTag);
-
 function App() {
-  /*<h1 className="name title">Name List</h1>
-  <NameTag firstName="Helena" lastName="Johansson"></NameTag>
-  <GreenNameTag firstName="Janne" lastName="Janesson"></GreenNameTag>
-  <NameTag firstName="Oskar" lastName="Oskarsson"></NameTag>*/
-
   return (
     <div className="container">
-      <AgeCount />
+      <ControlledInput />
     </div>
   );
 }
@@ -94,4 +73,26 @@ then it takes the props and adds new prop
 and then returns the same component with the new props
 
 its not showing yet so lets go to nametag so we need an extra prop
-*/
+
+const makeGreen = (BaseComponent) => (props) => {
+  const addGreen = {
+    style: {
+      color: "green",
+    },
+  };
+
+  const newProps = {
+    ...props,
+    ...addGreen,
+  };
+
+  return <BaseComponent {...newProps} />;
+};
+
+const GreenNameTag = makeGreen(NameTag);
+
+<h1 className="name title">Name List</h1>
+  <NameTag firstName="Helena" lastName="Johansson"></NameTag>
+  <GreenNameTag firstName="Janne" lastName="Janesson"></GreenNameTag>
+  <NameTag firstName="Oskar" lastName="Oskarsson"></NameTag>
+  */
