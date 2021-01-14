@@ -2,13 +2,14 @@ import React from "react";
 import NameTag from "./components/NameTag";
 import AgeCount from "./components/AgeCount";
 import ControlledInput from "./components/ControlledInput";
+import EmailJs from "./components/EmailJs";
 
 import "./index.css";
 
 function App() {
   return (
     <div className="container">
-      <ControlledInput />
+      <EmailJs />
     </div>
   );
 }
