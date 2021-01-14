@@ -21,7 +21,7 @@ const ControlledInput = () => {
   const [people, setPeople] = useState([]);
 
   const handleChange = (e) => {
-    const name = e.target.value;
+    const name = e.target.name;
     const value = e.target.value;
 
     console.log(name, value);
@@ -77,10 +77,11 @@ const ControlledInput = () => {
         </form>
         {people.map((person, index) => {
           // destructuring
-          const { id, firstName, email } = person;
+          const { id, firstName, lastName, email } = person;
           return (
             <div className="item" key={id}>
               <h4>{firstName}</h4>
+              <h4>{lastName}</h4>
               <p>{email}</p>
             </div>
           );
