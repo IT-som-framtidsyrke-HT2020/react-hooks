@@ -1,15 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NameTag from "./components/NameTag";
 import AgeCount from "./components/AgeCount";
 import ControlledInput from "./components/ControlledInput";
 import EmailJs from "./components/EmailJs";
+import Clock from "./components/Clock";
 
 import "./index.css";
 
+let born = false;
+
 function App() {
+  const [growth, setGrowth] = useState(0);
+  const [stop, setStopped] = useState(false);
+
+  // stop component lifecycle
+  useEffect(() => {
+    if (born) {
+      document.title = "Stopped";
+    }
+  }, [stop]);
+
+  // runs first time, when component is mounted
+  useEffect(() => {
+    console.log("I am born");
+  }, []);
+  // first argument is a callback function and second can be an empty array
+
+  // runs every time the component is updated
+  useEffect(() => {
+    if (born) {
+      console.log("Make mistake and learn");
+    } else {
+      born = true;
+    }
+
+    if (growth > 70) {
+      setStopped(true);
+    }
+
+    return function cleanUp() {
+      console.log("Cleanup after mistakes");
+    };
+  });
+
+  const handleGrowth = () => {
+    setGrowth(growth + 10);
+  };
+
   return (
     <div className="container">
-      <EmailJs />
+      <h2>Use Effect</h2>
+      <h3>Growth: {growth}</h3>
+      <button onClick={handleGrowth}>Learn and grow</button>
+      <div>
+        <h2>Use Effect Example</h2>
+        <Clock />
+      </div>
     </div>
   );
 }
@@ -96,4 +142,14 @@ const GreenNameTag = makeGreen(NameTag);
   <NameTag firstName="Helena" lastName="Johansson"></NameTag>
   <GreenNameTag firstName="Janne" lastName="Janesson"></GreenNameTag>
   <NameTag firstName="Oskar" lastName="Oskarsson"></NameTag>
-  */
+
+  5. USEEFFECT
+useEffect has a completeley different signature/syntax than useState
+its a function thats accepts two parameters, a callback functions and a second parameter that
+usually is an empty array. It runs when the component is mounted either the first time or updated. 
+it depends on the second parameter, if i pass an empty array here the component is mounted/born
+we can see the consol.log at once and it only runs one time
+
+and if i dont want it to run on initial mount we can create a variable
+now it ony runs when i update
+*/
