@@ -9,6 +9,12 @@ const ButtonBar = () => {
       <LinkContainer to="/">
         <Button>Home</Button>
       </LinkContainer>
+      <LinkContainer to="/about">
+        <Button>About</Button>
+      </LinkContainer>
+      <LinkContainer to="/users">
+        <Button>Users</Button>
+      </LinkContainer>
     </ButtonToolbar>
   );
 };

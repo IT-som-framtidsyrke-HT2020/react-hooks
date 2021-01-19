@@ -37,18 +37,19 @@ function App() {
         <Jumbotron>
           <h1 className="header">React Bootstrap Example</h1>
           <h2>
-            {" "}
-            Current page is
             <Switch>
+              <Route path="/about">
+                <AboutPage />
+              </Route>
+              <Route path="/users">
+                <Users />
+              </Route>
               <Route path="/">
                 <Home />
               </Route>
-              <Route path="/about" component={AboutPage} />
-              <Route path="/users" component={Users} />
             </Switch>
           </h2>
           <h2>
-            Navigate to {""}
             <ButtonBar />
           </h2>
         </Jumbotron>
