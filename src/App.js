@@ -6,6 +6,7 @@ import {
   NavLink,
   Redirect,
   MemoryRouter,
+  Switch,
 } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
@@ -13,7 +14,11 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 
+import Home from "./pages/Home";
+import Users from "./pages/Users";
 import AboutPage from "./pages/AboutPage";
+import ButtonBar from "./pages/ButtonBar";
+
 import NameTag from "./components/NameTag";
 import AgeCount from "./components/AgeCount";
 import ControlledInput from "./components/ControlledInput";
@@ -21,6 +26,7 @@ import EmailJs from "./components/EmailJs";
 import Clock from "./components/Clock";
 
 import "./index.css";
+import { LinkContainer } from "react-router-bootstrap";
 
 let born = false;
 
@@ -30,6 +36,21 @@ function App() {
       <Container className="p-3">
         <Jumbotron>
           <h1 className="header">React Bootstrap Example</h1>
+          <h2>
+            {" "}
+            Current page is
+            <Switch>
+              <Route path="/">
+                <Home />
+              </Route>
+              <Route path="/about" component={AboutPage} />
+              <Route path="/users" component={Users} />
+            </Switch>
+          </h2>
+          <h2>
+            Navigate to {""}
+            <ButtonBar />
+          </h2>
         </Jumbotron>
       </Container>
     </MemoryRouter>
