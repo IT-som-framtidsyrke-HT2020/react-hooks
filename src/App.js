@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Link, NavLink } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  NavLink,
+  Redirect,
+} from "react-router-dom";
 
 import AboutPage from "./pages/AboutPage";
 import NameTag from "./components/NameTag";
@@ -13,6 +19,12 @@ import "./index.css";
 let born = false;
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleClick = () => {
+    setLoggedIn(!loggedIn);
+  };
+
   return (
     <BrowserRouter>
       <div className="container">
@@ -28,11 +40,17 @@ function App() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/user/john" exact activeClassName="link-active-style">
+            <NavLink
+              to="/user/john/doe"
+              exact
+              activeClassName="link-active-style"
+            >
               User John Doe
             </NavLink>
           </li>
         </ul>
+        {loggedIn.toString()}
+        <button onClick={handleClick}>{loggedIn ? "logout" : "login"}</button>
         <Route
           path="/"
           exact
@@ -42,10 +60,16 @@ function App() {
         ></Route>
         <Route path="/about" exact component={AboutPage}></Route>
         <Route
-          to="/user/:username"
+          path="/user/:firstname/:lastname"
           exact
           render={({ match }) => {
-            return <h1>Welcome {match.params.username}</h1>;
+            return loggedIn ? (
+              <h1>
+                Welcome {match.params.firstname} {match.params.lastname}
+              </h1>
+            ) : (
+              <Redirect to="/" />
+            );
           }}
         ></Route>
       </div>
