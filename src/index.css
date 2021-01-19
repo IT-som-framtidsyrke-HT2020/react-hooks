@@ -75,3 +75,7 @@ code {
   align-items: center;
   border-radius: 0.25rem;
 }
+
+.link-active-style {
+  color: green;
+}

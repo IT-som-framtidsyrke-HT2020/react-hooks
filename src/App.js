@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link, NavLink } from "react-router-dom";
 
+import AboutPage from "./pages/AboutPage";
 import NameTag from "./components/NameTag";
 import AgeCount from "./components/AgeCount";
 import ControlledInput from "./components/ControlledInput";
@@ -15,16 +16,36 @@ function App() {
   return (
     <BrowserRouter>
       <div className="container">
+        <ul>
+          <li>
+            <NavLink to="/" exact activeClassName="link-active-style">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" exact activeClassName="link-active-style">
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/user/john" exact activeClassName="link-active-style">
+              User John Doe
+            </NavLink>
+          </li>
+        </ul>
         <Route
           path="/"
+          exact
           render={() => {
             return <h1>Home Page</h1>;
           }}
         ></Route>
+        <Route path="/about" exact component={AboutPage}></Route>
         <Route
-          path="/about"
-          render={() => {
-            return <h1>About Page</h1>;
+          to="/user/:username"
+          exact
+          render={({ match }) => {
+            return <h1>Welcome {match.params.username}</h1>;
           }}
         ></Route>
       </div>
