@@ -22,7 +22,7 @@ const Clock = () => {
     };
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     // we can manipulate the mouse pointer like this
     // x and y now shows our mouse ponters position
     window.addEventListener("mousemove", mousemoveHandler);
@@ -32,7 +32,7 @@ const Clock = () => {
         y: e.clientY,
       });
     };
-  }, []);
+  }, []);*/
 
   return (
     <div>

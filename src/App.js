@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+
 import NameTag from "./components/NameTag";
 import AgeCount from "./components/AgeCount";
 import ControlledInput from "./components/ControlledInput";
@@ -10,53 +12,23 @@ import "./index.css";
 let born = false;
 
 function App() {
-  const [growth, setGrowth] = useState(0);
-  const [stop, setStopped] = useState(false);
-
-  // stop component lifecycle
-  useEffect(() => {
-    if (born) {
-      document.title = "Stopped";
-    }
-  }, [stop]);
-
-  // runs first time, when component is mounted
-  useEffect(() => {
-    console.log("I am born");
-  }, []);
-  // first argument is a callback function and second can be an empty array
-
-  // runs every time the component is updated
-  useEffect(() => {
-    if (born) {
-      console.log("Make mistake and learn");
-    } else {
-      born = true;
-    }
-
-    if (growth > 70) {
-      setStopped(true);
-    }
-
-    return function cleanUp() {
-      console.log("Cleanup after mistakes");
-    };
-  });
-
-  const handleGrowth = () => {
-    setGrowth(growth + 10);
-  };
-
   return (
-    <div className="container">
-      <h2>Use Effect</h2>
-      <h3>Growth: {growth}</h3>
-      <button onClick={handleGrowth}>Learn and grow</button>
-      <div>
-        <h2>Use Effect Example</h2>
-        <Clock />
+    <BrowserRouter>
+      <div className="container">
+        <Route
+          path="/"
+          render={() => {
+            return <h1>Home Page</h1>;
+          }}
+        ></Route>
+        <Route
+          path="/about"
+          render={() => {
+            return <h1>About Page</h1>;
+          }}
+        ></Route>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
@@ -152,4 +124,50 @@ we can see the consol.log at once and it only runs one time
 
 and if i dont want it to run on initial mount we can create a variable
 now it ony runs when i update
+
+const [growth, setGrowth] = useState(0);
+  const [stop, setStopped] = useState(false);
+
+  // stop component lifecycle
+  useEffect(() => {
+    if (born) {
+      document.title = "Stopped";
+    }
+  }, [stop]);
+
+  // runs first time, when component is mounted
+  useEffect(() => {
+    console.log("I am born");
+  }, []);
+  // first argument is a callback function and second can be an empty array
+
+  // runs every time the component is updated
+  useEffect(() => {
+    if (born) {
+      console.log("Make mistake and learn");
+    } else {
+      born = true;
+    }
+
+    if (growth > 70) {
+      setStopped(true);
+    }
+
+    return function cleanUp() {
+      console.log("Cleanup after mistakes");
+    };
+  });
+
+  const handleGrowth = () => {
+    setGrowth(growth + 10);
+  };
+
+    <h2>Use Effect</h2>
+      <h3>Growth: {growth}</h3>
+      <button onClick={handleGrowth}>Learn and grow</button>
+      <div>
+        <h2>Use Effect Example</h2>
+        <Clock />
+      </div>
+
 */
