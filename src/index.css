@@ -79,3 +79,7 @@ code {
 .link-active-style {
   color: green;
 }
+
+.header {
+  text-align: center;
+}

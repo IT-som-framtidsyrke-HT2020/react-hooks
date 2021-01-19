@@ -5,7 +5,13 @@ import {
   Link,
   NavLink,
   Redirect,
+  MemoryRouter,
 } from "react-router-dom";
+
+import Button from "react-bootstrap/Button";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
+import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 
 import AboutPage from "./pages/AboutPage";
 import NameTag from "./components/NameTag";
@@ -19,61 +25,14 @@ import "./index.css";
 let born = false;
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleClick = () => {
-    setLoggedIn(!loggedIn);
-  };
-
   return (
-    <BrowserRouter>
-      <div className="container">
-        <ul>
-          <li>
-            <NavLink to="/" exact activeClassName="link-active-style">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" exact activeClassName="link-active-style">
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/user/john/doe"
-              exact
-              activeClassName="link-active-style"
-            >
-              User John Doe
-            </NavLink>
-          </li>
-        </ul>
-        {loggedIn.toString()}
-        <button onClick={handleClick}>{loggedIn ? "logout" : "login"}</button>
-        <Route
-          path="/"
-          exact
-          render={() => {
-            return <h1>Home Page</h1>;
-          }}
-        ></Route>
-        <Route path="/about" exact component={AboutPage}></Route>
-        <Route
-          path="/user/:firstname/:lastname"
-          exact
-          render={({ match }) => {
-            return loggedIn ? (
-              <h1>
-                Welcome {match.params.firstname} {match.params.lastname}
-              </h1>
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-      </div>
-    </BrowserRouter>
+    <MemoryRouter>
+      <Container className="p-3">
+        <Jumbotron>
+          <h1 className="header">React Bootstrap Example</h1>
+        </Jumbotron>
+      </Container>
+    </MemoryRouter>
   );
 }
 
@@ -214,5 +173,61 @@ const [growth, setGrowth] = useState(0);
         <h2>Use Effect Example</h2>
         <Clock />
       </div>
+
+REACT ROUTER
+
+State
+ const [loggedIn, setLoggedIn] = useState(false);
+
+ Function
+  const handleClick = () => {
+    setLoggedIn(!loggedIn);
+  };
+
+  Put this in return
+    <ul>
+          <li>
+            <NavLink to="/" exact activeClassName="link-active-style">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" exact activeClassName="link-active-style">
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/user/john/doe"
+              exact
+              activeClassName="link-active-style"
+            >
+              User John Doe
+            </NavLink>
+          </li>
+        </ul>
+        {loggedIn.toString()}
+        <button onClick={handleClick}>{loggedIn ? "logout" : "login"}</button>
+        <Route
+          path="/"
+          exact
+          render={() => {
+            return <h1>Home Page</h1>;
+          }}
+        ></Route>
+        <Route path="/about" exact component={AboutPage}></Route>
+        <Route
+          path="/user/:firstname/:lastname"
+          exact
+          render={({ match }) => {
+            return loggedIn ? (
+              <h1>
+                Welcome {match.params.firstname} {match.params.lastname}
+              </h1>
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
 
 */
