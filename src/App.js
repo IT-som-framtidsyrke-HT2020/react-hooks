@@ -9,6 +9,8 @@ import {
   Switch,
 } from "react-router-dom";
 
+import { API } from "./config";
+
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
@@ -28,33 +30,42 @@ import Clock from "./components/Clock";
 import "./index.css";
 import { LinkContainer } from "react-router-bootstrap";
 
-let born = false;
+//let born = false;
+
+const initProfile = {
+  publicRepos: null,
+  website: null,
+};
 
 function App() {
+  // initialize state variables
+  const [profile, setProfile] = useState(initProfile);
+
+  // Function to get data form github API
+  async function getProfile() {
+    const response = await fetch("https://api.github.com/users/pickadolly");
+    const json = await response.json();
+
+    // update state with the response data from the API
+    setProfile({
+      publicRepos: json.public_repos,
+      website: json.blog,
+    });
+  }
+
+  // Load github profile data from API when page mounts
+  useEffect(() => {
+    getProfile();
+    // only load this one time when the page first mounts
+  }, []);
+
   return (
-    <MemoryRouter>
-      <Container className="p-3">
-        <Jumbotron>
-          <h1 className="header">React Bootstrap Example</h1>
-          <h2>
-            <Switch>
-              <Route path="/about">
-                <AboutPage />
-              </Route>
-              <Route path="/users">
-                <Users />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </h2>
-          <h2>
-            <ButtonBar />
-          </h2>
-        </Jumbotron>
-      </Container>
-    </MemoryRouter>
+    <div className="container">
+      <h2>Fetch Data useEffect Example</h2>
+      <h3>{`Public repos: ${profile.publicRepos}`}</h3>
+      <h3>{`Website: ${profile.website}`}</h3>
+      {API}
+    </div>
   );
 }
 
@@ -252,4 +263,32 @@ State
           }}
         ></Route>
 
+
+      
+REACT BOOTSTRAP + REACT ROUTER
+
+put this in return
+<MemoryRouter>
+      <Container className="p-3">
+        <Jumbotron>
+          <h1 className="header">React Bootstrap Example</h1>
+          <h2>
+            <Switch>
+              <Route path="/about">
+                <AboutPage />
+              </Route>
+              <Route path="/users">
+                <Users />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </h2>
+          <h2>
+            <ButtonBar />
+          </h2>
+        </Jumbotron>
+      </Container>
+    </MemoryRouter>
 */
